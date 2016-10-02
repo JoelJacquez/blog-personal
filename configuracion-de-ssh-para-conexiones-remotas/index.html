@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+  <head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="alternate" href="http://joeljacquez.com" hreflang="pt-BR">
+<link href="http://gmpg.org/xfn/11" rel="profile">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="theme-color" content="#005344">
+<title> Configuración de SSH para conexiones remotas | Joel Jacquez</title>
+<meta name="google-site-verification" content="zS1dSn20XtA4FJYEOQLXqI0boxZdMnJ2g3beje-cl20">
+<meta name="description" content="Configuración de SSH para conexiones remotas">
+<meta name="keywords" content="">
+<!-- Social: Facebook / Open Graph -->
+<meta property="og:url" content="http://joeljacquez.com/configuracion-de-ssh-para-conexiones-remotas">
+<meta property="og:title" content=" Configuración de SSH para conexiones remotas | Joel Jacquez">
+<meta property="og:description" content="Configuración de SSH para conexiones remotas">
+<meta property="og:site_name" content="Joel Jacquez">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:author" content="https://www.facebook.com/cryptt3r">
+<meta property="og:image" content="http://joeljacquez.com">
+<!-- Social: Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nandomoreirame">
+<meta name="twitter:domain" content="http://joeljacquez.com">
+<meta name="twitter:title" content=" Configuración de SSH para conexiones remotas | Joel Jacquez">
+<meta name="twitter:description" content="Configuración de SSH para conexiones remotas">
+<meta name="twitter:image:src" content="http://joeljacquez.com">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="114x114" href="http://joeljacquez.com/assets/ico/apple-touch-icon-114-516f4e19976b9e4dbb77ad9b576831fe.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://joeljacquez.com/assets/ico/apple-touch-icon-72-5409b2df229305703caf583d86c845ab.png">
+<link rel="apple-touch-icon" href="http://joeljacquez.com/assets/ico/apple-touch-icon-57-aa873e019cf659e0d4e6a0b5bb9f379d.png">
+<link rel="shortcut icon" href="http://joeljacquez.com/assets/ico/favicon-b5ecc36e2f9d7bd353ee91851eb81a94.png">
+<!-- rel prev and next -->
+<!-- Canonical link tag -->
+<link rel="canonical" href="http://joeljacquez.com/configuracion-de-ssh-para-conexiones-remotas">
+<link rel="alternate" type="application/rss+xml" title="Joel Jacquez" href="http://joeljacquez.com/feed.xml">
+<link rel="stylesheet" href="/assets/main-e03fd29918e6a55fb4e40f4e044772fc.css">
+<script src="/assets/modernizr-custom-cb807611a3e262b2eac59444cbab74d6.js" data-cfasync="false"></script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Website",
+  "publisher": "joeljacquez.com",
+  "url": "http://joeljacquez.com/",
+  "description": "Developer Front-end/NodeJS,  Responsive Desing, HTML5, CSS3, JavaScript"
+}
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'joeljacquez',
+      baseurl          = '';
+</script>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-85052080-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+    <meta name="robots" content="noindex"> <!--=====  Please remove it ! ! !  ======-->
+    <meta name="googlebot" content="noindex"> <!--=====  Please remove it ! ! !  ======-->
+  </head>
+  <body class="post-template single">
+    <header class="header">
+  <div class="container">
+    <h1><a href="/"><strong>Joel Jacquez</strong></a></h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="#!" data-modal="modalSearch"><i class="fa fa-search"></i></a></li>
+        <li><a href="/feed.xml" target="_blank"><i class="fa fa-feed"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <main class="wrapper container" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
+      <article class="post" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+  <header class="post-header">
+    <h1>Configuración de SSH para conexiones remotas</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-13">
+        <i class="fa fa-calendar-o"></i> <time datetime="2016-10-01"> 2016-10-01
+      </time>
+      <span>
+        <i class="fa fa-comments"></i> <a href="/configuracion-de-ssh-para-conexiones-remotas#disqus_thread" data-disqus-identifier="/configuracion-de-ssh-para-conexiones-remotas">Leave a comment</a>
+      </span>
+      <span>
+        <i class="fa fa-folder-open-o"></i> <a href="/category/servidores/">Servidores</a>
+      </span>
+    </div>
+  </header>
+  <p>En este punto ya debemos de tener instalado <strong>ssh</strong> en nuestro servidor.</p>
+<h2 id="paso-1-iniciar-con-usuario-root">Paso 1 Iniciar con usuario root</h2>
+<p>Lo primero que haremos será conectarnos a nuestro servidor remoto, y para eso utilizaremos el siguiente comando</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">local</span><span class="nv">$ </span>ssh root@ip_del_servidor</code></pre></div>
+<p>una vez ingresado el comando nos pedira el password del usuario root</p>
+<p>Es importante saber que el usuario <strong>root</strong> en linux es el usuario administrdor y por lo tanto tiene permisos para todo, lo cual no es recomendable tenerlo habilitado para conexiones <strong>ssh</strong>, esto nos lleva a nuestro segundo paso.</p>
+<h2 id="paso-2-crear-un-nuevo-usuario">Paso 2 Crear un nuevo usuario</h2>
+<p>Una vez que estamos dentro del servidor remoto como usuario <strong>root</strong>, ya estamos listos para crear una nueva cuenta de usuario que utilizaremos de ahora en adelante.</p>
+<p>En este ejemplo llamaremos a nuestro usuario <strong><em>webapps</em></strong>, pero tu puedes usar el nombre que desees, para esto utilizaremos el siguiente comando:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">root@server# adduser webapps</code></pre></div>
+<p>Esto nos hará una cuantas preguntas y nos pedira que ingresemos un password para este usuario, es importante que este password no lo vayamos a olvidar ya que será utilizado de ahora en adelante cuando ingresemos al servidor con este usuario.</p>
+<h2 id="paso-3-privilegios-de-usuario-root">Paso 3 Privilegios de usuario <em>root</em></h2>
+<p>Ahora que ya tenemos un cuenta de usuario con permisos regulares lo siguiente que haremos sera agregarle permisos de administrdor, y para eso lo agregaremos al grupo sudo por medio del siguiente comando</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">root@server# gpasswd -a webapps sudo</code></pre></div>
+<p>Ahora si ya podremos ejecutar comandos con privilegios/permisos de super usuario</p>
+<h2 id="paso-4-configuracin-del-servicio-ssh">Paso 4 Configuración del servicio <em>SSH</em></h2>
+<p>En este punto ya tenemos un nueva cuenta con la que podremos nos podremos conectar por ssh, lo siguiente es desabilitar la cuenta del usuario <strong><em>root</em></strong> para que no permita conexiones remotas con este usuario.</p>
+<p>Lo que vamos a hacer ahora es editar el archivo de configuración <strong><em>ssh</em></strong> con el editor de texto <strong>nano</strong></p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">root@server# nano /etc/ssh/sshd_config</code></pre></div>
+<p>una vez abierto el archivo buscaremos la siguiente linea</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">PermitRootLogin yes</code></pre></div>
+<p>y ahora lo cambiaremos por la siguiente linea</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">PermitRootLogin no</code></pre></div>
+<blockquote>
+  <p>Siempre es recomendado desabilitar la cuenta <strong><em>root</em></strong> en cualquier servidor</p>
+</blockquote>
+<p>Ahora para terminar toca salir del editor y guardar los cambios realizados para eso utilizaremos la siguiente combinación de teclas <strong>ctrl</strong> + <strong>x</strong> y luego <strong>y</strong>, y por ultimo la tecla <strong>enter</strong></p>
+<h2 id="paso-5-reiniciar-el-servidor-ssh">Paso 5 Reiniciar el servidor SSH</h2>
+<p>Ya hemos terminado de configurar nuestro servidor ssh y para que los cambios surtan efecto tenemos que reniciar el servidor, y lo haremos de la suiente manera</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">root@server# service ssh restart</code></pre></div>
+<p>Para  probar la nueva configuración cerraremos la conexión actual simplemente tecleando en la terminal</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">root@server# <span class="nb">exit</span></code></pre></div>
+<blockquote>
+  <p>Si intentamos conectarnos con el usuario <strong><em>root</em></strong> ya no podremos de ahora en adelante nos conectaremos por ssh con el nuevo usuario en este caso <strong><em>webapps</em></strong></p>
+</blockquote>
+<p>De ahora en adelante nos conectaremos de la siguiente forma para este ejemplo seguiremos usando el usuario que creamos anteriormente</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">local</span><span class="nv">$ </span>ssh webapps@ip_del_servidor</code></pre></div>
+<p>y acontinuacion nos pedirá el password, una vez ejecutado el comando anterior ya estaremos  de nuestro server pero ahora estamos con el usuario <strong><em>webapps</em></strong>.</p>
+<h2 id="paso-6-agregar-clave-pblica-al-servidor-opcional">Paso 6 Agregar Clave pública al servidor (Opcional)</h2>
+<p>Este paso es opcional, pero recomenadado.
+&gt; Las siguientes instrucciones son para facilitarnos las cosas un poco mas y no tener que estar poniendo el password cada vez que intentemos conectarnos al servidor</p>
+<p>Una vez aclarado el obejetivo de este paso, ahora si manos a la obra.
+### Paso 6.a generar claves <em>ssh</em>
+Lo primero que haremos sera crear un clave ssh (Si ya tienes una puedes omitir este paso)</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">local</span><span class="nv">$ </span>ssh-keygen -t rsa</code></pre></div>
+<p>y  a continuación nos aparecerá algo parecido a esto</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Generating public/private rsa key pair.
+Enter file in which to save the key <span class="o">(</span>/Users/tu_user/.ssh/id_rsa<span class="o">)</span>:</code></pre></div>
+<p>Esto nos hara un par de preguntas y un vez terminado esto ya tendremos nuestro par de claves, una privada y una pública con los siguientes nombres respectivamente <strong><em>id_rsa</em></strong> y <strong><em>id_rsa.pub</em></strong> dentro de la carpeta <strong>~/.ssh/</strong></p>
+<h3 id="paso-6b-copiar-clave-pblica">Paso 6.b Copiar clave pública</h3>
+<p>Lo que toca hacer ahora es copiar la clave publica que acabamos de generar en nuestro equipo local.</p>
+<blockquote>
+  <p>Esta clave la copiaremos en el servidor al que nos queramos conectar, esto es para que ya no nos pida password cada vez que nos conectemos.</p>
+</blockquote>
+<p>ahora mostraremos por terminal clave publica que acabamos de generar la cual tiene por nombre <strong>id_rsa.pub</strong> y para esto utilizaremos el siguiente comando</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">local</span><span class="nv">$ </span>cat ~/.ssh/id_rsa.pub</code></pre></div>
+<p>Este comando nos mostrara algo muy similar a esto</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">local</span><span class="nv">$ </span>cat ~/.ssh/id_rsa.pub
+ssh-rsa AAaAB3NzaC1yc2EAAAADAQABAAABAQCx4mXCbQCtQOS3cSmJw0T2vu7OYHbz2uubGRIUNvYgILexZqJXQ1a4AOqM6nQpa8X4KH3BUxuNJeWrbJqOyKuCK6gNVGTthUKpq+3fWJmRgz8kI2MD/i58uQ+Mbz5IPHMlwdBCtja17hRpbZ8Mwf/yPuJ5YJtkV6pF5B3Yssi8d5xzJ0piL+dkd03f8swJ6OMdMEoEfG4MMnUyY/e3JJAxB2w0m38BMgoL4ZrxCojQeR6keux/Ad31iuvha6bcqB7325T98ICVxj7yOXP2LuDoVifveVm5M9fFN+G5NZae/+8vnoQBzuUX0oT0O21t7QxJ2bvRLLHIPiLXtry+vpjl tu_usuario@equipo_local</code></pre></div>
+<h3 id="paso-6c-copiar-clave-publica-en-el-servidor-remoto">Paso 6.c Copiar clave publica en el servidor remoto</h3>
+<p>Lo primero que haremos sera conectarnos al servidor con el usuario creado <strong><em>webapps</em></strong></p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">local</span><span class="nv">$ </span>ssh webapps@ip_del_servidor</code></pre></div>
+<p>una vez que estemos dentro del servido lo siguiente que haremos sera crear la carpeta <strong><em>.ssh</em></strong> dentro del home de la cuenta que estamos usando</p>
+<blockquote>
+  <p><strong>Nota:</strong> Tendremos que hacer esto por cada cuenta del servidor a la que nos queramos conectar.</p>
+</blockquote>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">webapps@server<span class="nv">$ </span>mkdir .ssh
+webapps@server<span class="nv">$ </span>chmod <span class="m">700</span> .ssh</code></pre></div>
+<p>Ahora con el edito <strong>nano</strong> crearemos y editaremos el archivo <strong><em>authorized_keys</em></strong> dentro del directorio <strong><em>.ssh</em></strong></p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">webapps@server<span class="nv">$ </span>nano .ssh/authorized_keys</code></pre></div>
+<p>y dentro de este archivo copiaremos el contenido de nuestra clave publica y posteriormente presionaremos <strong><code>ctrl</code></strong>+<strong><code>x</code></strong>  y despues precionamos <strong><code>Y</code></strong> para confirmar los cambios.</p>
+<p>Una vez finalizado la edición del archivo le asignaremos los permisos correspondientes</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">webapps@server<span class="nv">$ </span>chmod <span class="m">600</span> .ssh/authorized_keys</code></pre></div>
+<p>Y ahora si hemos terminado de configurar el servidor, precederemos a salir y de ahora en adelante ya no será necesario ingresar el password cada vez que nos conectemos desde nuestro equipo.</p>
+  <footer class="post-footer">
+    <section class="author">
+      <h4>Joel Jacquez</h4>
+      <p>Desarrollador web, entusiasta de la tecnología, buscando siempre la mejor solución acompañada de un buen cafe</p>
+    </section>
+<aside class="share">
+  <h4>Share this.</h4>
+  <a href="http://twitter.com/share?text=Configuración de SSH para conexiones remotas&amp;url=http://joeljacquez.com/configuracion-de-ssh-para-conexiones-remotas&amp;hashtags=web,dev,blog,soudev&amp;via=cryptt3r"
+  onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+    <i class="fa fa-twitter-square"></i>
+  </a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://joeljacquez.com/configuracion-de-ssh-para-conexiones-remotas"
+  onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+    <i class="fa fa-facebook-square"></i>
+  </a>
+</aside>
+      <hr>
+<aside id="comments" class="disqus">
+  <h3 class="txt-center"><i class="fa fa-comments"></i> Comments</h3>
+  <hr>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = '/configuracion-de-ssh-para-conexiones-remotas';
+    var disqus_title = 'Configuración de SSH para conexiones remotas';
+    var disqus_url = 'http://joeljacquez.com/configuracion-de-ssh-para-conexiones-remotas';
+    /*var disqus_developer = 1;*/
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+  </noscript>
+</aside>
+  </footer>
+</article>
+    </main>
+<footer class="footer">
+  <div class="container">
+    <ul class="icons">
+      <li>
+        <a href="https://github.com/joeljacquez" class="icon-github" target="_blank">
+          <i class="fa fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/cryptt3r" class="icon-facebook" target="_blank">
+          <i class="fa fa-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/cryptt3r" class="icon-twitter" target="_blank">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mx.linkedin.com/in/jacquez" class="icon-linkedin" target="_blank">
+          <i class="fa fa-linkedin"></i>
+        </a>
+      </li>
+    </ul>
+    <p>
+      <q>I have no special talent. I am only passionately curious.</q>
+      <small>– Albert Einstein</small>
+    </p>
+    <small class="clearfix">
+      Made with <a href="http://jekyllrb.com" target="_blank">Jekyll</a> • <a href="https://github.com/JoelJacquez/blog-personal" target="_blank">Open source <i class="fa fa-heart"></i></a>
+    </small>
+  </div>
+</footer>
+<a class="scroll-up fa fa-chevron-up bounce" href="#" data-position="0"></a>
+<div id="modalSearch" class="modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__content">
+    <a href="#!" class="modal-close" data-modal-close>&times;</a>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search in 1 articles">
+      <ul id="results-container"></ul>
+    </div>
+  </div>
+</div>
+    <script src="/assets/main-52d417e8a6ff9f5b168386d37c96338a.js"></script>
+  </body>
+</html>

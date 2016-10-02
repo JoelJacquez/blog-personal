@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Joel Jacquez | Web Developer</title>
+    <description>Developer Front-end/NodeJS,  Responsive Desing, HTML5, CSS3, JavaScript</description>
+    <link>http://joeljacquez.com/</link>
+    <atom:link href="http://joeljacquez.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 01 Oct 2016 20:58:37 -0600</pubDate>
+    <lastBuildDate>Sat, 01 Oct 2016 20:58:37 -0600</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Configuración de SSH para conexiones remotas</title>
+        <description>&lt;p&gt;En este punto ya debemos de tener instalado &lt;strong&gt;ssh&lt;/strong&gt; en nuestro servidor.&lt;/p&gt; &lt;h2 id=&quot;paso-1-iniciar-con-usuario-root&quot;&gt;Paso 1 Iniciar con usuario root&lt;/h2&gt; &lt;p&gt;Lo primero que haremos será conectarnos a nuestro servidor remoto, y para eso utilizaremos el siguiente comando&lt;/p&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh root@ip_del_servidor&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt; &lt;p&gt;una vez ingresado el comando nos pedira el password del usuario root&lt;/p&gt; &lt;p&gt;Es importante saber que el usuario &lt;strong&gt;root&lt;/strong&gt; en linux es el usuario administrdor y por lo tanto tiene permisos para todo, lo cual no es recomendable tenerlo habilitado para conexiones &lt;strong&gt;ssh&lt;/strong&gt;, esto nos lleva a nuestro segundo paso.&lt;/p&gt; &lt;h2 id=&quot;paso-2-crear-un-nuevo-usuario&quot;&gt;Paso 2 Crear un nuevo...</description>
+        <pubDate>Sat, 01 Oct 2016 13:12:37 -0600</pubDate>
+        <link>http://joeljacquez.com/configuracion-de-ssh-para-conexiones-remotas</link>
+        <guid isPermaLink="true">http://joeljacquez.com/configuracion-de-ssh-para-conexiones-remotas</guid>
+        
+        <category>linux</category>
+        
+        <category>ssh</category>
+        
+        
+        <category>servidores</category>
+        
+      </item>
+    
+  </channel>
+</rss>
